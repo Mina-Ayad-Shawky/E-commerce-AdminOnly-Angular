@@ -1,0 +1,44 @@
+<div class="card col-md-11 col-sm-12 mx-auto" *ngIf="!loading">
+  <div class="card__title">
+    <div class="icon">
+      <a href="#"><i class="fa fa-arrow-left"></i></a>
+    </div>
+    <h3>New products</h3>
+  </div>
+  <div class="card__body">
+    <div class="half">
+
+      <div class="image">
+        <img src="{{itemDetails.image}}" alt="">
+      </div>
+    </div>
+    <div class="half">
+      <div class="featured_text">
+        <h1>{{itemDetails.title}}</h1>
+        <p class="sub">{{itemDetails.category}}</p>
+      </div>
+      <div class="description">
+        <div class="info">
+          <ul class="list-unstyled">
+            <li><strong>Category :</strong> {{itemDetails.category}}</li>
+            <li style="font-size: smaller;"><strong>Description :</strong> {{itemDetails.description}}</li>
+            <li><strong>Rate :</strong> {{itemDetails.rating.rate}}</li>
+            <li><strong>Count :</strong> {{itemDetails.rating.count}}</li>
+            <li><strong>Price :</strong> {{itemDetails.price}}</li>
+          </ul>
+        </div>
+      </div>
+      <span class="stock"><i class="fa fa-pen"></i> In stock</span>
+      <div class="reviews">
+        <span>(64 reviews)</span>
+      </div>
+      <div class="action d-flex mt-4">
+        <button class="mr-2" type="button" routerLink="">Add to cart</button>
+        <button type="button" routerLink="/allProducts">Go Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>

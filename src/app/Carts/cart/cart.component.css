@@ -1,0 +1,32 @@
+.cart-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: #d9534f;
+}
+.cart-summary {
+  font-size: 1.2em;
+  color: #5bc0de;
+}
+.total-price {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.btn-delete {
+  background-color: #d9534f;
+  color: white;
+}
+.btn-view {
+  background-color: #527ab6;
+  color: white;
+}
+.btn-order {
+  background-color: #5cb85c;
+  color: white;
+}
+.confirmation-message {
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}

@@ -1,0 +1,84 @@
+<div class="box mt-4">
+  <div class="my-2 col-md-11 col-sm-12 d-flex justify-content-between">
+    <app-select [data]="allCategories" [title]="'Categories'" (selected)="getSpecificCategory($event)"></app-select>
+    <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">Add New Product</button>
+  </div>
+  <div class="row" *ngIf="!isLoading">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of allData">
+
+          <td><img style="width: 40px; height: 50px;" src="{{item.image}}" alt=""></td>
+          <td>{{item.title}}</td>
+          <td>{{item.category}}</td>
+          <td>{{item.price}}</td>
+          <td><button class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop" (click)="editProduct(item)">Update</button></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="text-center w-100" *ngIf="isLoading">
+    <app-spinner></app-spinner>
+  </div>
+</div>
+
+<div>
+  <!-- Button trigger modal -->
+
+
+  <!-- Modal -->
+  <div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Add Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" [formGroup]="form">
+            <div class="d-flex flex-wrap">
+              <div class="col-4">
+                <label class="d-block" for="">Title</label>
+                <input type="text" formControlName="title">
+              </div>
+              <div class="col-4">
+                <label class="d-block" for="">Price</label>
+                <input type="text" formControlName="price">
+              </div>
+              <div class="col-4">
+                <label for="">Category</label>
+                <app-select [data]="allCategories" [title]="'Categories'" (selected)="getSpecificCategory($event)" [selectedValue]="form.value.category">
+                </app-select>
+              </div>
+              <div class="col-4">
+                <label class="d-block" for="">Image</label>
+                <img style="width: 100%; height: 90px" src="{{base64}}" alt="">
+                <input type="file" (change)="handleUpload($event)">
+              </div>
+              <div class="col-8">
+                <label class="d-block" for="">Description</label>
+                <textarea rows="5" class="w-100" name="" id="" formControlName="description"></textarea>
+              </div>
+            </div>
+          </form>
+
+
+          <div class="modal-footer">
+            <button type="button" [disabled]="!form.valid" class="btn btn-success" (click)="addProduct()">Add Product</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

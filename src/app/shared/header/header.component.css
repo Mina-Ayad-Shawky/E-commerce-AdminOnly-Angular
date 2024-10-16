@@ -1,0 +1,17 @@
+.custom-navbar {
+  background: linear-gradient(to right, #ad0101, #530202); /* Dark red gradient */
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.navbar-brand, .nav-link {
+  color: white !important;
+  font-size: 25px;
+}
+
+.nav-link:hover {
+  color: #ffcccc !important; /* Light red on hover */
+}
+.navbar{
+  /* padding-left: 6rem;
+  padding-right: 6rem; */
+}

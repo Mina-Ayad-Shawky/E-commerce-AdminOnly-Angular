@@ -1,0 +1,95 @@
+<div class="container my-5" *ngIf="!loading">
+  <h1 class="cart-title">All Carts</h1>
+  <p class="cart-summary">You have <span style="color: red;">{{cartItems.length}}</span> items in your cart</p>
+
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-md-3">
+        <label for="">Start Date</label>
+        <input type="date" formControlName="start" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label for="">End Date</label>
+        <input type="date" formControlName="end" class="form-control">
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <button class="btn btn-success" (click)="applyFilter()">Apply</button>
+      </div>
+    </div>
+  </form>
+
+
+  <table class="table table-bordered mt-3">
+    <thead class="thead-light">
+      <tr>
+
+        <th scope="col">Date</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of cartItems; let i=index">
+        <td class="align-middle">{{element.date |date:"short"}}</td>
+        <td class="align-middle">
+          {{element.products.length}}
+        </td>
+        <td class="align-middle">
+          <button class="btn btn-delete mr-2" (click)="onDelete(element.id)">Delete</button>
+          <button class="btn btn-view" data-toggle="modal" data-target="#exampleModal" (click)="showCartDetails(element.id)">View</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="alert alert-danger" *ngIf="cartItems.length==0">
+    You Don't Have Any Items In Your Cart
+  </div>
+
+
+
+</div>
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+
+<div>
+
+
+  <!-- Modal -->
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cart Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" colspan="2">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of products">
+                <td><img src="{{item.item.image}}" alt="" style="width: 40px;"> </td>
+                <th scope="row">{{item.item.title}}</th>
+                <td>{{item.item.price}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.quantity * item.item.price}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+          <div style="text-align: right;">Total : ${{totalPrice}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Button trigger modal -->
